@@ -9,11 +9,11 @@
    ```
    2. Вариант 2 - запустить проект вручную
    ```shell
-    docker-compose up -build
-    docker-compose exec --rm php-fpm php bin/console doctrine:database:create
-    docker-compose exec --rm php-fpm php bin/console doctrine:migrations:migrate --no-interaction
-    docker-compose exec --rm php-fpm php bin/console lexik:jwt:generate-keypair
-    docker-compose exec --rm php-fpm php bin/console app:init
+   docker-compose exec php-fpm php bin/console doctrine:database:drop --if-exists --force
+   docker-compose exec php-fpm php bin/console doctrine:database:create
+   docker-compose exec php-fpm php bin/console doctrine:migrations:migrate --no-interaction
+   docker-compose exec php-fpm php bin/console lexik:jwt:generate-keypair
+   docker-compose exec php-fpm php bin/console app:init
    ```
 
 ## Как использовать
