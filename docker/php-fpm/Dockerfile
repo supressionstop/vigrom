@@ -7,4 +7,5 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
         install-php-extensions intl apcu opcache pdo pdo_pgsql pgsql
 ### php extensions
 
+
 WORKDIR /var/www/app

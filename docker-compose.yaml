@@ -19,6 +19,11 @@ services:
     ports:
       - "80:80"
       - "443:443"
+  composer:
+    image: composer
+    volumes:
+      - ./app:/app
+    command: install
   db:
     build:
       context: .
