@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  php-fpm:
+    build:
+      context: .
+      dockerfile: docker/php-fpm/Dockerfile
+    working_dir: /var/www/app
+    volumes:
+      - ./app:/var/www/app
+      - ./docker/php-fpm/php.ini:/usr/local/etc/php/conf.d/local.ini:ro
+  webserver:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    volumes:
+      - ./app:/var/www/app
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    ports:
+      - "80:80"
+      - "443:443"
+  db:
+    build:
+      context: .
+      dockerfile: docker/postgres/Dockerfile
+    environment:
+      - POSTGRES_USER=db_user
+      - POSTGRES_PASSWORD=db_password
+    ports:
+      - "5432:5432"
